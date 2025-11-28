@@ -1,0 +1,27 @@
+{
+  "name": "C++ Development",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/msclock/features/vcpkg:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "vadimcn.vscode-lldb",
+        "matepek.vscode-catch2-test-adapter",
+        "jeff-hykin.better-cpp-syntax"
+      ],
+      "settings": {
+        "C_Cpp.default.compilerPath": "/usr/bin/clang++-21",
+        "clangd.arguments": ["--compile-commands-dir=${workspaceFolder}/build"]
+      }
+    }
+  },
+  "postCreateCommand": "cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=/usr/bin/clang++-21 -DCMAKE_C_COMPILER=/usr/bin/clang-21 -DCMAKE_TOOLCHAIN_FILE=/vcpkg/scripts/buildsystems/vcpkg.cmake",
+  "remoteUser": "vscode"
+}
