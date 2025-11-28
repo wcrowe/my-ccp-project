@@ -29,8 +29,12 @@ The `postCreateCommand` in devcontainer.json runs CMake automatically on start/r
 ## Building and Running the Project
 Inside the container (VS Code terminal):
 ```
+rm -rf build
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=/usr/bin/clang++-21 -DCMAKE_C_COMPILER=/usr/bin/clang-21 -
 ninja -C build  # Build
 ./build/main    # Run (assuming add_executable(main ...) in CMakeLists.txt)
+
+
 ```
 
 ## Customizing
